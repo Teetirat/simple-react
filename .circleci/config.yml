@@ -28,4 +28,4 @@ jobs:
           command: yarn build
       - run:
           name: Build Container Image
-          command: docker build -t simple-react .
+          command: sudo docker build -t simple-react .
