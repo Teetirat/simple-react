@@ -13,14 +13,12 @@ jobs:
       - setup_remote_docker:
           version: 20.10.7
       - restore_cache:
-        name: Restore Yarn Package Cache
-        keys: 
-          - yarn-packages-v1-{{ checksum "yarn.lock" }}
+          keys:
+            - yarn-packages-v1-{{ checksum "yarn.lock" }}
       - save_cache:
-        name: Save Yarn Package Cache
-        key: yarn-packages-v1-{{ checksum "yarn.lock" }}
-        paths:
-          - ~/.cache/yarn
+          paths:
+            - ~/.cache/yarn
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
           command: yarn --frozen-lockfile --cache-folder ~/.cache/yarn && yarn install
