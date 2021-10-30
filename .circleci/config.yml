@@ -5,9 +5,13 @@ jobs:
     working_directory: ~/simple-react
     docker:
       - image: cimg/node:16.12.0
+        auth:
+          username: teetirat
+          password: $DOCKER_PASSWORD
     steps:
       - checkout
-      - setup_remote_docker
+      # - setup_remote_docker:
+      #     version: 20.10.7
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
