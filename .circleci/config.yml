@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Run Tests
           command: yarn run test
-       - restore_cache:
+      - restore_cache:
           name: Restore App Binary Cache
           keys:
             - app-binary-{{ checksum "./build" }}
