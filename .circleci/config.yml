@@ -36,6 +36,7 @@ jobs:
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
+            echo "$DOCKER_PASSWORD" | docker login -u "teetirat" --password-stdin
             docker tag simple-react:latest simple-react:$SIMPLE_REACT_VERSION
             docker push simple-react:latest
             docker push simple-react:$SIMPLE_REACT_VERSION
