@@ -1,7 +1,7 @@
 version: 2.1
 
 executors:
-  CI:
+  ci:
     environment:
       IMAGE_NAME: teetirat/simple-react
     docker:
@@ -13,7 +13,7 @@ executors:
 
 jobs:
   test:
-    executor: CI
+    executor: ci
     steps:
       - checkout
       - restore_cache:
@@ -32,7 +32,7 @@ jobs:
           name: Run Tests
           command: yarn run test
   build-and-pack-image:
-    executor: CI
+    executor: ci
     steps:
       - checkout
       - restore_cache:
