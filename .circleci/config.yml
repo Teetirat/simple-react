@@ -26,7 +26,7 @@ jobs:
           name: Run Tests
           command: yarn run test
       - run:
-          name: Run Yarn Build
+          name: Build App
           command: yarn build
       - run:
           name: Build Container Image
