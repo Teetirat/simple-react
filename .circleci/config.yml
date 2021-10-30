@@ -1,9 +1,10 @@
 version: 2.1
+
 jobs:
   build:
     working_directory: ~/simple-react
     docker:
-      - image: circleci/node:16.10
+      - image: cimg/node:16.12.0
     steps:
       - checkout
       - restore_cache:
@@ -20,5 +21,11 @@ jobs:
             - .yarn/cache
             - .yarn/unplugged
       - run:
-          name: Run tests
+          name: Run Tests
           command: yarn run test
+      - run:
+          name: Run Yarn Build
+          command: yarn build
+      - run:
+          name: Build Container Image
+          command: docker build -t simple-react .
