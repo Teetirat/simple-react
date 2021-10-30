@@ -33,3 +33,9 @@ jobs:
       - run:
           name: Build Container Image
           command: docker build -t simple-react .
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            docker tag simple-react:latest simple-react:$SIMPLE_REACT_VERSION
+            docker push simple-react:latest
+            docker push simple-react:$SIMPLE_REACT_VERSION
