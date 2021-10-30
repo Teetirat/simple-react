@@ -4,14 +4,14 @@ jobs:
   build:
     working_directory: ~/simple-react
     docker:
-      - image: cimg/node:16.12.0
+      - image: circleci/node:16.12.0
         auth:
           username: teetirat
           password: $DOCKER_PASSWORD
     steps:
       - checkout
-      # - setup_remote_docker:
-      #     version: 20.10.7
+      - setup_remote_docker:
+          version: 20.10.7
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
@@ -28,9 +28,18 @@ jobs:
       - run:
           name: Run Tests
           command: yarn run test
+       - restore_cache:
+          name: Restore App Binary Cache
+          keys:
+            - app-binary-{{ checksum "./build" }}
       - run:
           name: Run Yarn Build
           command: yarn build
+      - save_cache:
+          name: Save App Binary Cache
+          key: app-binary-{{ checksum "./build" }}
+          paths:
+            - ./build-cache
       - run:
           name: Build Container Image
           command: docker build -t simple-react .
