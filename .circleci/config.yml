@@ -34,7 +34,7 @@ jobs:
       - run:
           name: Run Yarn Build
           command: yarn build
-       - save_cache:
+      - save_cache:
           key: app-build-{{ checksum "build" }}
           paths:
             - ./build
