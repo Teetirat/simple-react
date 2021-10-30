@@ -33,3 +33,6 @@ jobs:
       - run:
           name: Build Container Image
           command: docker build -t simple-react .
+      - run:
+          name: Build App
+          command: rm ~/.cache/yarn
