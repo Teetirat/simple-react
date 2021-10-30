@@ -27,7 +27,6 @@ jobs:
       - run:
           name: Run Tests
           command: yarn run test
-  build:
       - run:
           name: Build App
           command: yarn build
