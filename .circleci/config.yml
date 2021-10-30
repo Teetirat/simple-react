@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  build:
+  checkout-and-test:
     working_directory: ~/simple-react
     docker:
       - image: circleci/node:16.12.0
@@ -27,6 +27,7 @@ jobs:
       - run:
           name: Run Tests
           command: yarn run test
+  build:
       - run:
           name: Build App
           command: yarn build
@@ -37,6 +38,6 @@ jobs:
           name: Publish Docker Image to Docker Hub
           command: |
             echo "$DOCKER_PASSWORD" | docker login -u "teetirat" --password-stdin
-            docker tag simple-react:latest simple-react:$SIMPLE_REACT_VERSION
-            docker push simple-react:latest
-            docker push simple-react:$SIMPLE_REACT_VERSION
+            docker tag simple-react:latest teetirat/simple-react:$SIMPLE_REACT_VERSION
+            docker push teetirat/simple-react:latest
+            docker push teetirat/simple-react:$SIMPLE_REACT_VERSION
