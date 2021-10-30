@@ -12,9 +12,6 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 20.10.7
-      - run:
-          name: Build App
-          command: rm -rf ~/.cache/yarn
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
