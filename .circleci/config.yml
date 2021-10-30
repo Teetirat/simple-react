@@ -28,9 +28,16 @@ jobs:
       - run:
           name: Run Tests
           command: yarn run test
+      - restore_cache:
+          keys:
+            - app-build-{{ checksum "build" }}
       - run:
           name: Run Yarn Build
           command: yarn build
+       - save_cache:
+          key: app-build-{{ checksum "build" }}
+          paths:
+            - ./build
       - run:
           name: Build Container Image
           command: docker build -t simple-react .
