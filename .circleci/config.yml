@@ -24,12 +24,7 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - .yarn/cache
-      - run:
-          name: ls 
-          command: ls -la
-      - run:
-          name: cd 
-          command: cd .yarn && ls
+            - .yarn/unplugged
       - run:
           name: Run Tests
           command: yarn run test
