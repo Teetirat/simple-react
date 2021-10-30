@@ -27,5 +27,11 @@ jobs:
           name: Run Yarn Build
           command: yarn build
       - run:
+          name: pwd
+          command: pwd
+      - run:
+          name: ls
+          command: ls
+      - run:
           name: Build Container Image
-          command: sudo docker build -t simple-react .
+          command: docker build -t simple-react .
