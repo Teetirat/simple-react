@@ -63,3 +63,17 @@ jobs:
             docker tag $IMAGE_NAME:latest $IMAGE_NAME:latest
             docker push $IMAGE_NAME:latest
             docker push $IMAGE_NAME:$SIMPLE_REACT_VERSION
+workflows:
+  version: 2.1
+  build-master:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only: main
+      - build-and-pack-image:
+          requires:
+            - test
+          filters:
+            branches:
+              only: main
