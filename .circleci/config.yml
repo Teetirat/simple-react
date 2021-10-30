@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  checkout-and-test:
+  build:
     working_directory: ~/simple-react
     docker:
       - image: circleci/node:16.12.0
