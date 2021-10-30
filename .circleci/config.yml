@@ -6,9 +6,6 @@ jobs:
       - image: circleci/node:16.10
     steps:
       - checkout
-      - run:
-          name: install yarn
-          command: "curl -o- -L https://yarnpkg.com/install.sh | bash"
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
